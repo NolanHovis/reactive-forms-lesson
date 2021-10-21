@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: 600;
+  font-size: large;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-size: xx-large;
+}
+
+body {
+  background-color: #c5e0d8;
+}

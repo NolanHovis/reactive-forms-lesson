@@ -1,0 +1,102 @@
+<div class="card">
+  <div class="card-title" style="text-align: center; margin-bottom: 30px">
+    <h1>Reactive Form</h1>
+  </div>
+  <form *ngIf="form" [formGroup]="userInfo" (ngSubmit)="onSubmit()">
+    <label for="firstName">First Name:</label>
+    <input formControlName="firstName" type="text" id="firstName" />
+    <p
+      class="help"
+      *ngIf="
+        userInfo.get('firstName').touched && !userInfo.get('firstName').valid
+      "
+    >
+      Don't forget your name!
+    </p>
+    <label for="lastName">Last Name:</label>
+    <input formControlName="lastName" type="text" id="lastName" />
+    <p
+      class="help"
+      *ngIf="
+        userInfo.get('lastName').touched && !userInfo.get('lastName').valid
+      "
+    >
+      Don't forget your name!
+    </p>
+    <div class="group">
+      <label for="email">Email:</label>
+      <input formControlName="email" type="text" id="email" />
+      <p
+        class="help"
+        *ngIf="userInfo.get('email').touched && !userInfo.get('email').valid"
+      >
+        Don't forget your email!
+      </p>
+      <div class="group" formArrayName="phoneNumbers">
+        <label for="phone">Phone:</label>
+        <input
+          type="text"
+          *ngFor="
+            let phoneControl of userInfo.get('phoneNumbers').controls;
+            let i = index
+          "
+          [formControlName]="i"
+        />
+        <button
+          type="button"
+          style="width: 30px; margin-bottom: 10px"
+          (click)="onAddPhone()"
+        >
+          +
+        </button>
+      </div>
+    </div>
+    <div class="group" formGroupName="address">
+      <label for="street">Street:</label>
+      <input formControlName="street" type="text" id="street" />
+
+      <label for="city">City:</label>
+      <input formControlName="city" type="text" id="city" />
+
+      <label for="state">State:</label>
+      <input formControlName="state" type="text" id="state" />
+
+      <label for="zip">Zip Code:</label>
+      <input formControlName="zip" type="text" id="zip" />
+      <p
+        class="help"
+        *ngIf="
+          userInfo.get('address').touched && !userInfo.get('address').valid
+        "
+      >
+        Address incomplete!
+      </p>
+    </div>
+    <button type="submit" [disabled]="!userInfo.valid">Submit</button>
+  </form>
+
+  <!-- Info Display -->
+  <div class="display-info" *ngIf="!form">
+    <p>
+      {{ this.userInfo.value.firstName }} {{ this.userInfo.value.lastName }}
+    </p>
+    <p>
+      {{ this.userInfo.value.address.street }}
+      {{ this.userInfo.value.address.city }},
+      {{ this.userInfo.value.address.state }}
+      {{ this.userInfo.value.address.zip }}
+    </p>
+    <p>Email: {{ this.userInfo.value.email }}</p>
+    <div>
+      <label for="numbers">Phone:</label>
+      <p
+        *ngFor="let number of userInfo.get('phoneNumbers').value; let i = index"
+        id="numbers"
+      >
+        {{ number }}
+      </p>
+    </div>
+
+    <button type="button" (click)="onNewForm()">New Form</button>
+  </div>
+</div>
