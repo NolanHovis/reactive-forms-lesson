@@ -1,0 +1,52 @@
+.card {
+  color: #c9c9c9;
+  width: 100%;
+  background: #444545;
+  padding: 50px 0;
+}
+
+form,
+.display-info {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 20px;
+  margin-top: 5px;
+  padding-top: 8px;
+  background-color: #c5e0d8;
+  border: solid 3px #b5ffe9;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+input.ng-invalid.ng-touched {
+  border: solid 3px #ceabb1;
+}
+
+button {
+  width: 33%;
+  padding: 4px;
+  background-color: #b5ffe9;
+  color: #444545;
+  border: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #c5e0d8;
+  color: #44454549;
+}
+
+.help {
+  font-size: smaller;
+  color: #ceabb1;
+  margin: 0;
+  margin-bottom: 10px;
+}
